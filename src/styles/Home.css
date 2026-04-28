@@ -89,12 +89,6 @@
   border-radius: 10px 10px 0 0;
 }
 
-/* Área de contenido */
-.tab-content-area {
-  padding: 1.5rem;
-  min-height: 400px;
-}
-
 /* Animación de entrada */
 @keyframes fadeIn {
   from {
@@ -116,6 +110,25 @@
 
   .tab-button {
     border-radius: 8px;
-    border-bottom: 1px solid #e5e7eb !important;
+    border-bottom: 1px solid #e5e7eb;
   }
+}
+
+/* Estilos para el formulario de configuración */
+.form-label {
+  color: #1e3a8a;
+  font-size: 0.9rem;
+}
+
+.form-control:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.1);
+}
+
+.card {
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
 }

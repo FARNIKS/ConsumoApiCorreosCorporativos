@@ -15,6 +15,7 @@
     "bootstrap": "^5.3.8",
     "bootstrap-table": "^1.27.1",
     "jquery": "^4.0.0",
+    "lucide-react": "^1.8.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.2",

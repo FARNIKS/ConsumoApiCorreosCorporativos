@@ -55,7 +55,7 @@ const Login = ({ onLoginSuccess }) => {
               type="text"
               name="alias" // Debe ser 'alias'
               className="form-input"
-              placeholder="Ej: mjimenez"
+              placeholder="Ej: usuario"
               value={credentials.alias}
               onChange={handleChange}
               required
@@ -95,7 +95,7 @@ const Login = ({ onLoginSuccess }) => {
         </form>
 
         <div className="login-footer">
-          <p>© 2026 EL ORBE Global Solutions</p>
+          <p>© 2026 EL ORBE</p>
         </div>
       </div>
     </div>
