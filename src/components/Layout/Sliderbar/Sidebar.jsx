@@ -1,6 +1,14 @@
-import React, { useEffect } from "react"; // Importante: añade useEffect
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { House, Mail, LogOut, Menu, ChevronLeft, Users } from "lucide-react";
+import {
+  House,
+  Mail,
+  LogOut,
+  Menu,
+  ChevronLeft,
+  Users,
+  UserPlus,
+} from "lucide-react"; // <--- Añadido UserPlus aquí
 import { useAuthUser } from "../../../hooks/useAuthUser.js";
 import "./Sidebar.css";
 
@@ -16,7 +24,6 @@ const Sidebar = ({ collapsed, setCollapsed, onLogout }) => {
     };
 
     window.addEventListener("resize", handleResize);
-
     handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
@@ -55,7 +62,13 @@ const Sidebar = ({ collapsed, setCollapsed, onLogout }) => {
 
             <Link to="/settings" className="nav-item">
               <Mail size={22} />
-              {!collapsed && <span>Configurar Correos</span>}
+              {!collapsed && <span>Correos Cumpleaños</span>}
+            </Link>
+
+            {/* Nuevo Enlace al Módulo de Nuevos Empleados */}
+            <Link to="/settings/new-employees" className="nav-item">
+              <UserPlus size={22} />
+              {!collapsed && <span>Correos Ingresos</span>}
             </Link>
           </>
         )}

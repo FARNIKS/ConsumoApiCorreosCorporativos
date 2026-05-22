@@ -54,7 +54,6 @@
 @media (max-width: 600px) {
   .btn-manual-send {
     width: 100%;
-    padding: 12px;
     font-size: 0.9rem;
     order: 1;
   }

@@ -3,11 +3,17 @@ import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home/Home";
 import Settings from "./pages/MailSettings/MailSettings";
+import NewEmployeeMailSettings from "./pages/NewEmployeeMailSettings/NewEmployeeMailSettings";
 import Login from "./pages/Login/Login";
 import UserPage from "./pages/UserPage/UserPage";
 
 function App() {
-  const [user, setUser] = useState(null);
+  // Corrección: Recuperar el estado inicial directamente de localStorage
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+
   const navigate = useNavigate();
 
   const handleLoginSuccess = (userData) => {
@@ -40,11 +46,22 @@ function App() {
         }
       />
 
+      {/* Módulo de correos de Cumpleaños */}
       <Route
         path="/settings"
         element={
           <Layout user={user}>
             <Settings />
+          </Layout>
+        }
+      />
+
+      {/* Módulo de correos de Nuevos Empleados */}
+      <Route
+        path="/settings/new-employees"
+        element={
+          <Layout user={user}>
+            <NewEmployeeMailSettings />
           </Layout>
         }
       />

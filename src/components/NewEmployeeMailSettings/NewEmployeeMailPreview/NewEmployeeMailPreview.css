@@ -1,0 +1,290 @@
+/* Contenedores Principales y Maquetación Extensible */
+.preview-column {
+  width: 100%;
+  height: 100%;
+}
+
+.preview-title {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #475569;
+  font-size: 14px;
+}
+
+.mail-body-preview-container {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #334155;
+  line-height: 1.6;
+  background-color: #f8fafc;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+}
+
+.mail-preview-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+/* Control del Banner e Imágenes */
+.mail-preview-banner {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mail-preview-banner-placeholder {
+  width: 100%;
+  height: 180px;
+  background-color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Secciones de Contenido */
+.mail-preview-content {
+  padding: 30px;
+}
+
+.mail-preview-intro {
+  font-size: 15.5px;
+  color: #334155;
+  margin-bottom: 30px;
+  white-space: pre-line;
+}
+
+.mail-preview-intro-bold {
+  margin: 0 0 12px 0;
+  font-weight: bold;
+}
+
+.mail-preview-intro-body {
+  margin: 0;
+}
+
+.mail-preview-country-section {
+  margin-top: 30px;
+}
+
+.mail-preview-company-group {
+  margin-bottom: 24px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.mail-preview-company-header {
+  background-color: #f8fafc;
+  padding: 14px 20px;
+  margin: 0;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e2e8f0;
+  text-transform: uppercase;
+}
+
+/* Listas de Empleados */
+.mail-preview-employee-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mail-preview-employee-item {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  background-color: #ffffff;
+}
+
+.mail-preview-employee-item:last-child {
+  border-bottom: none;
+}
+
+.mail-preview-emp-name {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 2px;
+}
+
+.mail-preview-dept-tag {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.mail-preview-dept-tag-uppercase {
+  text-transform: uppercase;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* Bloques de Cierre y Frases */
+.mail-preview-closing {
+  font-size: 15px;
+  color: #475569;
+  margin-top: 30px;
+  white-space: pre-line;
+}
+
+.mail-preview-closing-text {
+  margin: 0;
+}
+
+.mail-preview-phrase-box {
+  background-color: #fffbeb;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 35px 0 0 0;
+  border: 1px solid #fef3c7;
+  text-align: center;
+}
+
+.mail-preview-phrase-text {
+  margin: 0;
+  color: #b45309;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Cabeceras y Componentes del Reporte de Viernes */
+.mail-preview-header-gradient {
+  background: #0f172a;
+  padding: 30px 25px;
+  color: #ffffff;
+  border-bottom: 4px solid #3182ce;
+}
+
+.mail-preview-header-gradient h2 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.mail-preview-header-date {
+  font-size: 11px;
+  opacity: 0.8;
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mail-preview-summary-box {
+  background-color: #f1f5f9;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid #e2e8f0;
+}
+
+.mail-preview-summary-text {
+  font-size: 15px;
+  color: #334155;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.mail-preview-count-pill {
+  float: right;
+  background: #3182ce;
+  color: #ffffff;
+  font-size: 10px;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.mail-preview-status-container {
+  text-align: center;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.mail-preview-status-badge {
+  display: inline-block;
+  background-color: #ebf8ff;
+  color: #2b6cb0;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Alertas */
+.mail-preview-alert-box {
+  background-color: #fef1f2;
+  border: 1px solid #fee2e2;
+  border-left: 4px solid #f59e0b;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.mail-preview-alert-icon {
+  font-size: 18px;
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mail-preview-alert-text {
+  font-size: 13.5px;
+  color: #9a3412;
+  margin: 0;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.mail-preview-alert-text strong {
+  color: #7c2d12;
+  font-weight: 700;
+}
+
+/* Elementos del Pie de Página */
+.mail-preview-footer {
+  text-align: center;
+  padding: 25px;
+  font-size: 11px;
+  color: #64748b;
+  background-color: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+}
+
+.mail-preview-footer-brand {
+  color: #475569;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+
+.mail-preview-footer-text {
+  margin: 0;
+}

@@ -1,0 +1,28 @@
+.btn-manual-send {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: #1e3a8a;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 61px;
+}
+
+.btn-manual-send:hover:not(:disabled) {
+  background-color: #1e40af;
+}
+
+.btn-manual-send:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.spin {
+  animation: spinAction 1s linear infinite;
+}

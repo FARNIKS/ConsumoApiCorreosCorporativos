@@ -22,8 +22,7 @@ const EmployeeList = () => {
         '<span class="custom-loading-text">Consultando empleados...</span>',
       columns: [
         { field: "Nombre", title: "Nombre Completo", sortable: true },
-        { field: "company", title: "Empresa", sortable: true },
-        { field: "country", title: "País", sortable: true },
+        { field: "Departamento", title: "Departamento", soportable: true },
         { field: "Empresa", title: "Cod. Sede", align: "center" },
         {
           field: "Cumple",

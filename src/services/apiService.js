@@ -25,4 +25,43 @@ export const genericService = {
     apiClient.put("/settings/no-birthday", data),
   restoreNoBirthdayConfig: () =>
     apiClient.post("/settings/no-birthday/restore"),
+
+  getFridayReportStatus: () =>
+    apiClient.get("/settings/new-employees-friday-status"),
+  toggleFridayReport: () =>
+    apiClient.post("/settings/new-employees-friday/toggle"),
+  runFridayReportManual: () =>
+    apiClient.post("/settings/new-employees-friday/run"),
+
+  getMondayProcessStatus: () =>
+    apiClient.get("/settings/new-employees-monday-status"),
+  toggleMondayProcess: () =>
+    apiClient.post("/settings/new-employees-monday/toggle"),
+  runMondayProcessManual: () =>
+    apiClient.post("/settings/new-employees-monday/run"),
+
+  getNewEmployeeReportConfig: () =>
+    apiClient.get("/settings/new-employee-report"),
+  updateNewEmployeeReportConfig: (data) =>
+    apiClient.put("/settings/new-employee-report", data),
+  restoreNewEmployeeReportConfig: () =>
+    apiClient.post("/settings/new-employee-report/restore"),
+
+  getNewEmployeeReportRhConfig: () =>
+    apiClient.get("/settings/new-employee-report-rh"),
+  updateNewEmployeeReportRhConfig: (data) =>
+    apiClient.put("/settings/new-employee-report-rh", data),
+  restoreNewEmployeeReportRhConfig: () =>
+    apiClient.post("/settings/new-employee-report-rh/restore"),
+
+  getNoNewEmployeeReportRhConfig: () =>
+    apiClient.get("/settings/no-new-employee-report-rh"),
+  updateNoNewEmployeeReportRhConfig: (data) =>
+    apiClient.put("/settings/no-new-employee-report-rh", data),
+  restoreNoNewEmployeeReportRhConfig: () =>
+    apiClient.post("/settings/no-new-employee-report-rh/restore"),
+
+  getDepartments: () => apiClient.get("/employees/departamentos"),
+  getNewEmployees: () => apiClient.get("/new-employees"),
+  getNewEmployeesCount: () => apiClient.get("/new-employees/count"),
 };
