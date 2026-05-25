@@ -4,49 +4,48 @@ import "./NewEmployeeMailPreview.css";
 const NewEmployeeMailPreview = ({ activeTab, config }) => {
   const currentUrl = config?.banner_url || "";
 
-  // Estados locales independientes
   const [imageError, setImageError] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
-  // Sincronizar estados de carga y resetear errores si cambia la URL
   useEffect(() => {
     const isEmpty = !currentUrl || currentUrl.trim() === "";
 
-    if (isEmpty) {
-      setImageError(true);
-      setIsTyping(false);
-      return;
-    }
-
-    // Marcamos que se inició una nueva validación en segundo plano
-    setIsTyping(true);
-
-    const timer = setTimeout(() => {
-      const img = new Image();
-
-      // Guardar referencia al temporizador para evitar fugas de memoria
-      const timeoutFallback = setTimeout(() => {
-        img.src = "";
+    setTimeout(() => {
+      if (isEmpty) {
         setImageError(true);
         setIsTyping(false);
-      }, 3000);
+        return;
+      }
 
-      img.onload = () => {
-        clearTimeout(timeoutFallback);
-        setImageError(false);
-        setIsTyping(false);
-      };
+      setIsTyping(true);
+      setImageError(false);
 
-      img.onerror = () => {
-        clearTimeout(timeoutFallback);
-        setImageError(true);
-        setIsTyping(false);
-      };
+      const timer = setTimeout(() => {
+        const img = new Image();
 
-      img.src = currentUrl;
-    }, 500);
+        const timeoutFallback = setTimeout(() => {
+          img.src = "";
+          setImageError(true);
+          setIsTyping(false);
+        }, 3000);
 
-    return () => clearTimeout(timer);
+        img.onload = () => {
+          clearTimeout(timeoutFallback);
+          setImageError(false);
+          setIsTyping(false);
+        };
+
+        img.onerror = () => {
+          clearTimeout(timeoutFallback);
+          setImageError(true);
+          setIsTyping(false);
+        };
+
+        img.src = currentUrl;
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }, 0);
   }, [currentUrl]);
 
   // Si no hay datos de configuración cargados aún, prevenir errores de lectura
@@ -104,12 +103,9 @@ const NewEmployeeMailPreview = ({ activeTab, config }) => {
                     </h3>
                     <ul className="mail-preview-employee-list">
                       <li className="mail-preview-employee-item">
-                        <span className="mail-preview-emp-name">
-                          Alejandro Jiménez
-                        </span>
+                        <span className="mail-preview-emp-name">Usuario 1</span>
                         <span className="mail-preview-dept-tag">
-                          Se incorpora al departamento de Tecnología e
-                          Infraestructura
+                          Se incorpora al departamento de Tecnología
                         </span>
                       </li>
                     </ul>
@@ -125,8 +121,7 @@ const NewEmployeeMailPreview = ({ activeTab, config }) => {
 
                 <div className="mail-preview-phrase-box">
                   <p className="mail-preview-phrase-text">
-                    "El éxito no es el final, el fracaso no es fatal: lo que
-                    cuenta es el coraje para continuar."
+                    "Frase célebre de ejemplo"
                   </p>
                 </div>
               </div>
@@ -164,11 +159,9 @@ const NewEmployeeMailPreview = ({ activeTab, config }) => {
                   </div>
                   <div className="mail-preview-employee-item">
                     <span className="mail-preview-dept-tag mail-preview-dept-tag-uppercase">
-                      Se incorpora al departamento de Operaciones y Desarrollo
+                      Se incorpora al departamento de Tecnología
                     </span>
-                    <span className="mail-preview-emp-name">
-                      Mariana Fajardo Torres
-                    </span>
+                    <span className="mail-preview-emp-name">Usuario 1</span>
                   </div>
                 </div>
 

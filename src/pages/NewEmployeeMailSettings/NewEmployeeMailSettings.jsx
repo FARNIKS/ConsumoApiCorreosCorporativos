@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import Swal from "sweetalert2";
+import * as apiService from "../../services/apiService";
 import useNewEmployeeMailSettings from "../../hooks/useNewEmployeeMailSettings";
 import { useNewEmployeeMonday } from "../../hooks/useNewEmployeeMonday";
 import { useNewEmployeeFriday } from "../../hooks/useNewEmployeeFriday";
 import NewEmployeeSettingsForm from "../../components/NewEmployeeMailSettings/NewEmployeeSettingsForm/NewEmployeeSettingsForm";
 import NewEmployeeMailPreview from "../../components/NewEmployeeMailSettings/NewEmployeeMailPreview/NewEmployeeMailPreview";
-import ManualSendButton from "../../components/NewEmployeeMailSettings/ManualSendButton/ManualSendButton";
+import ManualSendButton from "../../components/ManualSendButton/ManualSendButton";
 import "./NewEmployeeMailSettings.css";
 
 const NewEmployeeMailSettings = () => {
+  const [newEmployeesCount, setNewEmployeesCount] = useState(null);
+
   const {
     activeTab,
     setActiveTab,
@@ -17,20 +21,69 @@ const NewEmployeeMailSettings = () => {
     handleUpdate,
     handleReset,
   } = useNewEmployeeMailSettings();
+
   const mondayService = useNewEmployeeMonday();
   const fridayService = useNewEmployeeFriday();
+
+  const isFridayTab = activeTab === "friday-with" || activeTab === "friday-no";
+  const service = isFridayTab ? fridayService : mondayService;
+
+  // Función envuelta en useCallback para poder refrescar el contador cuando sea necesario
+  const fetchCount = useCallback(async () => {
+    try {
+      const response = await apiService.genericService.getNewEmployeesCount();
+
+      const count = response.data?.data?.count ?? 0;
+
+      setNewEmployeesCount(count);
+      console.log("Conteo recibido:", count);
+    } catch (error) {
+      console.error("Error cargando el conteo:", error);
+      setNewEmployeesCount(0);
+    }
+  }, []);
+
+  useEffect(() => {
+    const loadData = async () => {
+      await fetchCount();
+    };
+
+    loadData();
+  }, [fetchCount]);
+
+  const handleUpdateAndRefresh = async () => {
+    await handleUpdate();
+    fetchCount(); // Refresca tras guardar
+  };
+
+  const handleManualSendWithCheck = async () => {
+    const requiresValidation = activeTab === "general";
+
+    if (requiresValidation && newEmployeesCount === 0) {
+      Swal.fire({
+        icon: "info",
+        title: "Sin ingresos pendientes",
+        text: "Actualmente no hay nuevos empleados en la lista para enviar comunicados.",
+        confirmButtonColor: "#1e3a8a",
+      });
+      return;
+    }
+
+    await service.runManualSend();
+
+    if (requiresValidation) {
+      fetchCount();
+    }
+  };
 
   if (loading) {
     return (
       <div className="loading-container">
         <div className="spinner"></div>
-        <p>Cargando configuraciones de ingresos...</p>
+        <p>Cargando configuraciones...</p>
       </div>
     );
   }
-
-  const isFridayTab = activeTab === "friday-with" || activeTab === "friday-no";
-  const service = isFridayTab ? fridayService : mondayService;
 
   return (
     <div className="dashboard-container">
@@ -38,17 +91,24 @@ const NewEmployeeMailSettings = () => {
         <div className="header-content-wrapper">
           <div>
             <h2 className="dashboard-title">Ajustes de Nuevos Empleados</h2>
-            <p className="dashboard-subtitle">
-              Gestiona los comunicados de ingresos y reportes
-            </p>
+            <div className="dashboard-header-meta">
+              <p className="dashboard-subtitle">
+                Gestiona los comunicados de ingresos y reportes
+              </p>
+              {newEmployeesCount !== null && (
+                <span className="count-text">
+                  Hay <strong>{newEmployeesCount}</strong> nuevos empleados
+                  pendientes de procesar.
+                </span>
+              )}
+            </div>
           </div>
 
           <div className="header-actions-group">
             <ManualSendButton
-              onClick={service.runManualSend}
+              onClick={handleManualSendWithCheck}
               isProcessing={service.isProcessingManual}
             />
-
             <div
               className={`status-control-card ${service.isPaused ? "is-paused" : "is-active"}`}
             >
@@ -95,7 +155,6 @@ const NewEmployeeMailSettings = () => {
             ))}
           </ul>
         </div>
-
         <div className="tab-content-area" style={{ padding: "20px" }}>
           <div className="settings-main-grid">
             <div className="settings-column-form">
@@ -103,17 +162,15 @@ const NewEmployeeMailSettings = () => {
                 activeTab={activeTab}
                 config={currentConfig}
                 onConfigChange={updateConfig}
-                onSave={handleUpdate}
+                onSave={handleUpdateAndRefresh}
                 onReset={handleReset}
               />
             </div>
             <div className="preview-wrapper">
-              <div className="preview-content-limiter">
-                <NewEmployeeMailPreview
-                  activeTab={activeTab}
-                  config={currentConfig}
-                />
-              </div>
+              <NewEmployeeMailPreview
+                activeTab={activeTab}
+                config={currentConfig}
+              />
             </div>
           </div>
         </div>

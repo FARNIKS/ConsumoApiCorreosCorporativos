@@ -109,52 +109,44 @@
   overflow: hidden;
 }
 
+/* --- Contenedor de Tabs --- */
 .tabs-container {
-  background-color: #f9fafb;
+  background-color: #ffffff;
   border-bottom: 1px solid #e5e7eb;
-  padding: 0.5rem 1rem 0;
+  padding: 0 1rem;
 }
 
 .nav-tabs-custom {
   display: flex;
-  gap: 0.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
+  gap: 2px;
 }
 
+/* --- Botón de Tab --- */
 .tab-button {
   background: none;
   border: none;
-  padding: 0.75rem 1.25rem;
-  font-size: 0.85rem;
+  padding: 1rem 1.5rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #6b7280;
-  border-radius: 10px 10px 0 0;
-  transition: all 0.3s ease;
   cursor: pointer;
+  transition: all 0.3s ease;
   position: relative;
+  border-bottom: 3px solid transparent; /* Espacio para el subrayado */
+}
+
+.tab-button:hover {
+  color: #1e3a8a;
+  background-color: #f9fafb;
 }
 
 .tab-button.active {
   color: #1e3a8a;
-  background-color: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-bottom: 1px solid transparent;
-  margin-bottom: -1px;
+  border-bottom: 3px solid #1e3a8a; /* Subrayado elegante */
 }
-
-.tab-button.active::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: #1e3a8a;
-  border-radius: 10px 10px 0 0;
-}
-
 .settings-main-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;

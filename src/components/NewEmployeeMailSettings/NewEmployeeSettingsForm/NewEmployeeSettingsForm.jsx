@@ -12,7 +12,6 @@ const NewEmployeeSettingsForm = ({
     onConfigChange({ ...config, [field]: value });
   };
 
-  // Renderizar título adaptativo
   const getFormTitle = () => {
     if (activeTab === "general") return "Editar Plantilla General (Lunes)";
     if (activeTab === "friday-with")
@@ -20,12 +19,17 @@ const NewEmployeeSettingsForm = ({
     return "Editar Reporte para RH (Sin Ingresos)";
   };
 
+  const getClosingLabel = () => {
+    return activeTab === "general"
+      ? "Texto de Cierre (Despedida)"
+      : "Nota de Advertencia";
+  };
+
   return (
     <aside className="form-column">
       <div className="glass-card" key={activeTab}>
         <h3>{getFormTitle()}</h3>
 
-        {/* Campo Condicional: Título (Solo para Reportes de RH del Viernes) */}
         {activeTab !== "general" && (
           <div className="input-field">
             <label>Título del Reporte</label>
@@ -37,7 +41,6 @@ const NewEmployeeSettingsForm = ({
           </div>
         )}
 
-        {/* Campo Condicional: URL Banner (Solo para Plantilla General del Lunes) */}
         {activeTab === "general" && (
           <div className="input-field">
             <label>URL Banner Informativo</label>
@@ -49,17 +52,28 @@ const NewEmployeeSettingsForm = ({
           </div>
         )}
 
-        {/* Campo Común: Introducción */}
+        {/* CAMPO DINÁMICO: Introducción (Input lunes, Textarea viernes) */}
         <div className="input-field">
-          <label>Texto de Introducción</label>
-          <textarea
-            rows="3"
-            value={config.intro_text || ""}
-            onChange={(e) => handleChange("intro_text", e.target.value)}
-          />
+          <label>
+            {activeTab === "general"
+              ? "Saludo / A quién va dirigido"
+              : "Texto de Introducción"}
+          </label>
+          {activeTab === "general" ? (
+            <input
+              type="text"
+              value={config.intro_text || ""}
+              onChange={(e) => handleChange("intro_text", e.target.value)}
+            />
+          ) : (
+            <textarea
+              rows="3"
+              value={config.intro_text || ""}
+              onChange={(e) => handleChange("intro_text", e.target.value)}
+            />
+          )}
         </div>
 
-        {/* Campo Condicional: Cuerpo Principal (Solo para Plantilla General del Lunes) */}
         {activeTab === "general" && (
           <div className="input-field">
             <label>Cuerpo del Mensaje (Estructura de Bienvenida)</label>
@@ -71,9 +85,8 @@ const NewEmployeeSettingsForm = ({
           </div>
         )}
 
-        {/* Campo Común: Despedida */}
         <div className="input-field">
-          <label>Texto de Cierre (Despedida)</label>
+          <label>{getClosingLabel()}</label>
           <input
             type="text"
             value={config.closing_text || ""}
@@ -81,7 +94,6 @@ const NewEmployeeSettingsForm = ({
           />
         </div>
 
-        {/* Campo Común: Firma */}
         <div className="input-field">
           <label>Firma Institucional</label>
           <input

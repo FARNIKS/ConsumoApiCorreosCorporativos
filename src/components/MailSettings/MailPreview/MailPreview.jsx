@@ -1,111 +1,131 @@
 import React, { useState, useEffect } from "react";
 import "./MailPreview.css";
 
-const MailPreview = ({ activeTab, config }) => {
+const MailPreview = ({ activeTab, config = {} }) => {
   const [imageError, setImageError] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
-  const [prevUrl, setPrevUrl] = useState(config.banner_url);
-
-  if (config.banner_url !== prevUrl) {
-    setPrevUrl(config.banner_url);
-    const isEmpty = !config.banner_url || config.banner_url.trim() === "";
-    setImageError(isEmpty);
-    setIsTyping(!isEmpty);
-  }
 
   useEffect(() => {
-    if (!config.banner_url || config.banner_url.trim() === "") return;
-
+    // Usamos setTimeout(..., 0) para que React procese el renderizado
+    // antes de realizar cambios de estado, evitando el error de cascada.
     const timer = setTimeout(() => {
-      const img = new Image();
-
-      const timeoutFallback = setTimeout(() => {
-        img.src = "";
-        setImageError(true);
+      // 1. Si no estamos en la pestaña de cumpleaños, reseteamos estados de forma segura
+      if (activeTab !== "birthday") {
         setIsTyping(false);
-      }, 3000);
-
-      img.onload = () => {
-        clearTimeout(timeoutFallback);
         setImageError(false);
-        setIsTyping(false);
-      };
+        return;
+      }
 
-      img.onerror = () => {
-        clearTimeout(timeoutFallback);
+      // 2. Lógica de validación de banner
+      const url = config?.banner_url;
+      const isEmpty = !url || url.trim() === "";
+
+      if (isEmpty) {
         setImageError(true);
         setIsTyping(false);
-      };
+        return;
+      }
 
-      img.src = config.banner_url;
-    }, 500);
+      setIsTyping(true);
+      setImageError(false);
+
+      // 3. Validación asíncrona de la imagen
+      const loadTimer = setTimeout(() => {
+        const img = new Image();
+
+        const timeoutFallback = setTimeout(() => {
+          img.src = "";
+          setImageError(true);
+          setIsTyping(false);
+        }, 3000);
+
+        img.onload = () => {
+          clearTimeout(timeoutFallback);
+          setImageError(false);
+          setIsTyping(false);
+        };
+
+        img.onerror = () => {
+          clearTimeout(timeoutFallback);
+          setImageError(true);
+          setIsTyping(false);
+        };
+
+        img.src = url;
+      }, 500);
+
+      return () => clearTimeout(loadTimer);
+    }, 0);
 
     return () => clearTimeout(timer);
-  }, [config.banner_url]);
+  }, [config?.banner_url, activeTab]);
 
   return (
     <section className="preview-column">
-      <div className="preview-label">Vista Previa</div>
-      <div className="email-browser-frame">
-        <div className="email-content-wrapper">
-          {activeTab === "birthday" ? (
-            <>
-              {isTyping ? (
-                <div className="blade-img-placeholder">
-                  <span>🔍 Validando URL...</span>
-                </div>
-              ) : imageError || !config.banner_url ? (
-                <div className="blade-img-placeholder">
-                  <span>🖼️ Imagen no disponible o error de red</span>
-                </div>
-              ) : (
-                <img
-                  src={config.banner_url}
-                  alt="Banner"
-                  className="blade-img-banner"
-                  onError={() => setImageError(true)}
-                />
-              )}
+      <div className="preview-title">Vista Previa del Correo Electrónico</div>
 
-              <p className="blade-text-intro">{config.intro_text}</p>
-
-              <div className="country-section">
-                <h3 className="company-header">📍 Costa Rica - EL ORBE:</h3>
-                <ul className="employee-list">
-                  <li className="employee-item">🎂 Usuario de Prueba</li>
-                </ul>
+      <div className="email-container">
+        <div className="mail-preview-card">
+          {activeTab === "birthday" &&
+            (isTyping ? (
+              <div className="blade-img-placeholder">
+                <span>🔍 Validando URL...</span>
               </div>
+            ) : imageError || !config?.banner_url ? (
+              <div className="blade-img-placeholder">
+                <span>🖼️ Imagen no disponible</span>
+              </div>
+            ) : (
+              <img
+                src={config.banner_url}
+                alt="Banner"
+                className="banner"
+                onError={() => setImageError(true)}
+              />
+            ))}
 
-              <div className="birthday-main-body">
-                <p>{config.main_body}</p>
-                <p>
-                  <strong>{config.closing_text}</strong>
+          <div className="content">
+            {activeTab === "birthday" ? (
+              <>
+                <p className="intro-text">
+                  {config.intro_text || "Texto de introducción..."}
                 </p>
-              </div>
-
-              <div className="birthday-phrase-box">
-                <p>"Frase célebre de ejemplo"</p>
-              </div>
-            </>
-          ) : (
-            <>
-              <p className="blade-text-intro">{config.intro_text}</p>
-              <div className="no-birthday-phrase-box">
-                <span className="phrase-title-preview">{config.main_body}</span>
-                <p className="phrase-text-preview">
-                  "Frase célebre de ejemplo"
+                <div className="company-group">
+                  <h3 className="company-header">🥳 COSTA RICA › EL ORBE</h3>
+                  <ul className="employee-list">
+                    <li className="employee-item">🎂 Usuario de Prueba</li>
+                  </ul>
+                </div>
+                <div className="closing-section">
+                  <p>{config.main_body || "Cuerpo del mensaje..."}</p>
+                  <p>
+                    <strong>
+                      {config.closing_text || "Texto de cierre..."}
+                    </strong>
+                  </p>
+                </div>
+                <div className="phrase-box">
+                  <p className="phrase-text">"Frase célebre de ejemplo"</p>
+                </div>
+              </>
+            ) : (
+              <div className="closing-section">
+                <p className="intro-text">
+                  {config.intro_text || "Texto de introducción..."}
                 </p>
+                <p>{config.main_body || "Sin novedades para mostrar..."}</p>
+                <div className="phrase-box">
+                  <p className="phrase-text">"Frase célebre de ejemplo"</p>
+                </div>
               </div>
-              <p className="closing-text-preview">{config.closing_text}</p>
-            </>
-          )}
+            )}
+          </div>
 
-          <div className="footer-preview">
+          <div className="footer">
             <p>
-              Atentamente,
-              <br />
-              <strong>{config.sign_off}</strong>
-              <br />© {new Date().getFullYear()} OBGROUP
+              Atentamente, <br />
+              <strong>{config.sign_off || "Firma aquí"}</strong> <br />
+              &copy; {new Date().getFullYear()} OBGROUP
             </p>
           </div>
         </div>
