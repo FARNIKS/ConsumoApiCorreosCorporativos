@@ -28,25 +28,33 @@ const UserPage = () => {
 
   return (
     <div className="dashboard-container">
-      <div className="content-header">
-        <div>
-          <h2 className="dashboard-title">Gestión de Usuarios</h2>
-          <p className="dashboard-subtitle">
-            Administración de accesos y roles
-          </p>
+      {/* --- ENCABEZADO CORREGIDO --- */}
+      <div className="dashboard-header">
+        <div className="header-content-wrapper">
+          <div className="dashboard-header-meta">
+            <h2 className="dashboard-title">Gestión de Usuarios</h2>
+            <p className="dashboard-subtitle">
+              Administración de accesses y roles
+            </p>
+          </div>
+          <div className="header-actions-group">
+            <button
+              className="btn-register-custom"
+              onClick={() => handleOpenModal()}
+            >
+              <i className="bi bi-person-plus me-2"></i> Nuevo Usuario
+            </button>
+          </div>
         </div>
-
-        <button
-          className="btn-register-custom"
-          onClick={() => handleOpenModal()}
-        >
-          <i className="bi bi-person-plus me-2"></i> Nuevo Usuario
-        </button>
       </div>
 
       <div className="dashboard-card">
         <div className="tab-content-area">
-          <UserList onEdit={handleOpenModal} refreshTrigger={refreshKey} />
+          <UserList
+            onEdit={handleOpenModal}
+            refreshTrigger={refreshKey}
+            onRefresh={handleRefresh}
+          />
         </div>
       </div>
 

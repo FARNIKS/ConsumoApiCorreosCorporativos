@@ -61,7 +61,11 @@ export const genericService = {
   restoreNoNewEmployeeReportRhConfig: () =>
     apiClient.post("/settings/no-new-employee-report-rh/restore"),
 
-  getDepartments: () => apiClient.get("/employees/departamentos"),
+  getDepartments: () => apiClient.get("/employees/departments"),
   getNewEmployees: () => apiClient.get("/new-employees"),
   getNewEmployeesCount: () => apiClient.get("/new-employees/count"),
+
+  createNewEmployee: (data) => apiClient.post("/new-employees", data),
+  updateNewEmployee: (id, data) => apiClient.put(`/new-employees/${id}`, data),
+  getHistoryEmployees: () => apiClient.get("/history-employees"),
 };

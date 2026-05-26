@@ -1,47 +1,8 @@
-.dashboard-container {
-  animation: fadeIn 0.5s ease-in-out;
-}
-.dashboard-header {
-  margin-bottom: 2rem;
-}
-.dashboard-title {
-  margin: 0 0 0.25rem 0;
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #1f2937;
-}
-
-/* Meta-información sutil */
-.dashboard-header-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.dashboard-subtitle {
-  margin: 0;
-  color: #4b5563;
-}
-.count-text {
-  color: #6b7280;
-}
-.count-text strong {
-  color: #1e3a8a;
-  font-weight: 700;
-}
-
-/* Layout y acciones */
-.header-content-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.header-actions-group {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+.settings-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 25px;
+  align-items: start;
 }
 
 .status-control-card {
@@ -54,44 +15,18 @@
   border-radius: 14px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
+
 .status-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
 }
+
 .is-active .status-dot {
   background-color: #10b981;
 }
 .is-paused .status-dot {
   background-color: #ef4444;
-}
-
-.dashboard-card {
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
-}
-.tab-button {
-  background: none;
-  border: none;
-  padding: 0.75rem 1.25rem;
-  font-weight: 600;
-  color: #6b7280;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-}
-.tab-button.active {
-  color: #1e3a8a;
-  border-bottom: 2px solid #1e3a8a;
-}
-
-/* Grid de configuración y responsividad */
-.settings-main-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 25px;
-  align-items: start;
 }
 
 @media (max-width: 1024px) {
@@ -100,16 +35,5 @@
   }
   .preview-wrapper {
     width: 100%;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }

@@ -1,0 +1,248 @@
+/* ==========================================================================
+   ESTILOS GLOBALES PARA DASHBOARDS & TABS (SaaS Elegante)
+   ========================================================================== */
+
+/* --- Contenedor Principal --- */
+.dashboard-container {
+  animation: dashboardFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1.5rem;
+}
+
+/* --- Encabezado del Dashboard --- */
+.dashboard-header {
+  margin-bottom: 2rem;
+  border-left: 4px solid #1e3a8a;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.header-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+.dashboard-title {
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+  font-size: 1.75rem;
+  letter-spacing: -0.025em;
+}
+
+.dashboard-subtitle {
+  color: #4b5563;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.dashboard-header-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.count-text {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.count-text strong {
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+/* --- Agrupador de Acciones en Header --- */
+.header-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* --- Contenedor de Tarjeta Principal --- */
+.dashboard-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   SISTEMA DE PESTAÑAS (TABS UNIFICADAS)
+   ========================================================================== */
+.tabs-container,
+.nav-tabs-custom {
+  display: flex;
+  background-color: #ffffff;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 20px;
+  padding: 0 0.5rem;
+  list-style: none;
+  gap: 8px;
+}
+
+/* Soporte tanto si usas <button> directo como sub-elementos */
+.tabs-container button,
+.nav-tabs-custom button,
+.tab-button {
+  background: none;
+  border: none;
+  padding: 1rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  position: relative;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tabs-container button:hover,
+.nav-tabs-custom button:hover,
+.tab-button:hover {
+  color: #1e3a8a;
+  background-color: #f8fafc;
+}
+
+.tabs-container button.active,
+.nav-tabs-custom button.active,
+.tab-button.active {
+  color: #1e3a8a;
+  border-bottom: 3px solid #1e3a8a;
+  background-color: transparent;
+}
+
+/* ==========================================================================
+   COMPONENTES COMUNES (Cards, Alertas, Spinners)
+   ========================================================================== */
+
+/* Alerta de advertencia */
+.alert-warning-custom {
+  background-color: #fff4e5;
+  color: #663c00;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 4px solid #ffa117;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  animation: dashboardSlideIn 0.3s ease-out;
+}
+
+/* Pantalla de carga completa */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  gap: 15px;
+  color: #1e3a8a;
+}
+
+/* Spinner base */
+.spinner,
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #1e3a8a;
+  border-radius: 50%;
+  animation: dashboardSpin 0.8s linear infinite;
+}
+
+/* Spinner para botones */
+.btn-spinner-dark {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: dashboardSpin 0.8s linear infinite;
+}
+
+/* Formularios deshabilitados en carga */
+.form-disabled {
+  opacity: 0.7;
+  pointer-events: none;
+  filter: grayscale(0.3);
+}
+
+/* ==========================================================================
+   ANIMACIONES Y RESPONSIVO
+   ========================================================================== */
+@keyframes dashboardSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dashboardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dashboardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 992px) {
+  .header-content-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .header-actions-group {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+  .dashboard-title {
+    font-size: 1.4rem;
+  }
+
+  .tabs-container,
+  .nav-tabs-custom {
+    overflow-x: auto;
+    padding-bottom: 4px;
+    gap: 4px;
+  }
+
+  .tabs-container button,
+  .nav-tabs-custom button,
+  .tab-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+}

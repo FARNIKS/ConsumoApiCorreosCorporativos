@@ -28,7 +28,6 @@ const NewEmployeeMailSettings = () => {
   const isFridayTab = activeTab === "friday-with" || activeTab === "friday-no";
   const service = isFridayTab ? fridayService : mondayService;
 
-  // Función envuelta en useCallback para poder refrescar el contador cuando sea necesario
   const fetchCount = useCallback(async () => {
     try {
       const response = await apiService.genericService.getNewEmployeesCount();
@@ -36,7 +35,6 @@ const NewEmployeeMailSettings = () => {
       const count = response.data?.data?.count ?? 0;
 
       setNewEmployeesCount(count);
-      console.log("Conteo recibido:", count);
     } catch (error) {
       console.error("Error cargando el conteo:", error);
       setNewEmployeesCount(0);
@@ -98,7 +96,7 @@ const NewEmployeeMailSettings = () => {
               {newEmployeesCount !== null && (
                 <span className="count-text">
                   Hay <strong>{newEmployeesCount}</strong> nuevos empleados
-                  pendientes de procesar.
+                  pendiente de procesar.
                 </span>
               )}
             </div>

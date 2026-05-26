@@ -7,8 +7,9 @@ import {
   Menu,
   ChevronLeft,
   Users,
-  UserPlus,
-} from "lucide-react"; // <--- Añadido UserPlus aquí
+  UserCheck,
+  BriefcaseBusiness,
+} from "lucide-react";
 import { useAuthUser } from "../../../hooks/useAuthUser.js";
 import "./Sidebar.css";
 
@@ -57,7 +58,12 @@ const Sidebar = ({ collapsed, setCollapsed, onLogout }) => {
           <>
             <Link to="/users" className="nav-item">
               <Users size={22} />
-              {!collapsed && <span>Usuarios</span>}
+              {!collapsed && <span>Usuarios Sistema</span>}
+            </Link>
+
+            <Link to="/new-employees" className="nav-item">
+              <UserCheck size={22} />
+              {!collapsed && <span>Registro de Ingresos</span>}
             </Link>
 
             <Link to="/settings" className="nav-item">
@@ -65,10 +71,9 @@ const Sidebar = ({ collapsed, setCollapsed, onLogout }) => {
               {!collapsed && <span>Correos Cumpleaños</span>}
             </Link>
 
-            {/* Nuevo Enlace al Módulo de Nuevos Empleados */}
             <Link to="/settings/new-employees" className="nav-item">
-              <UserPlus size={22} />
-              {!collapsed && <span>Correos Ingresos</span>}
+              <BriefcaseBusiness size={22} />
+              {!collapsed && <span>Correos de Ingreso</span>}
             </Link>
           </>
         )}

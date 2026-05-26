@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import "./styles/dashboard-global.css";
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home/Home";
+import NewEmployeesPage from "./pages/NewEmployees/NewEmployeesPage";
 import Settings from "./pages/MailSettings/MailSettings";
 import NewEmployeeMailSettings from "./pages/NewEmployeeMailSettings/NewEmployeeMailSettings";
 import Login from "./pages/Login/Login";
@@ -42,6 +44,15 @@ function App() {
         element={
           <Layout user={user}>
             <UserPage />
+          </Layout>
+        }
+      />
+
+      <Route
+        path="/new-employees"
+        element={
+          <Layout user={user}>
+            <NewEmployeesPage />
           </Layout>
         }
       />

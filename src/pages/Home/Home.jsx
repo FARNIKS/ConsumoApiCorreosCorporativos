@@ -8,31 +8,35 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
+      {/* --- ENCABEZADO CORREGIDO --- */}
       <div className="dashboard-header">
-        <h2 className="dashboard-title">Panel Administrativo</h2>
-        <p className="dashboard-subtitle">Control de cumpleaños corporativo</p>
+        <div className="header-content-wrapper">
+          <div className="dashboard-header-meta">
+            <h2 className="dashboard-title">Panel Administrativo</h2>
+            <p className="dashboard-subtitle">
+              Control de cumpleaños corporativo
+            </p>
+          </div>
+          {/* Espacio reservado por si en el futuro agregas un botón de exportar o filtros globales */}
+          <div className="header-actions-group"></div>
+        </div>
       </div>
 
       <div className="dashboard-card">
-        <div className="tabs-container">
-          <ul className="nav-tabs-custom">
-            <li className="nav-item-custom">
-              <button
-                className={`tab-button ${activeTab === "employees" ? "active" : ""}`}
-                onClick={() => setActiveTab("employees")}
-              >
-                <i className="bi bi-people me-2"></i>Empleados
-              </button>
-            </li>
-            <li className="nav-item-custom">
-              <button
-                className={`tab-button ${activeTab === "branches" ? "active" : ""}`}
-                onClick={() => setActiveTab("branches")}
-              >
-                <i className="bi bi-geo-alt me-2"></i>Sucursales
-              </button>
-            </li>
-          </ul>
+        {/* Simplificado quitando el 'ul/li' para que responda directo al CSS global de botones */}
+        <div className="nav-tabs-custom">
+          <button
+            className={`tab-button ${activeTab === "employees" ? "active" : ""}`}
+            onClick={() => setActiveTab("employees")}
+          >
+            <i className="bi bi-people me-2"></i>Empleados
+          </button>
+          <button
+            className={`tab-button ${activeTab === "branches" ? "active" : ""}`}
+            onClick={() => setActiveTab("branches")}
+          >
+            <i className="bi bi-geo-alt me-2"></i>Sucursales
+          </button>
         </div>
 
         <div className="tab-content-area">
@@ -43,4 +47,5 @@ const Dashboard = () => {
     </div>
   );
 };
+
 export default Dashboard;
