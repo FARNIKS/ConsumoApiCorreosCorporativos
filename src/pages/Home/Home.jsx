@@ -43,7 +43,6 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      {/* --- ENCABEZADO --- */}
       <div className="dashboard-header">
         <div className="header-content-wrapper">
           <div className="dashboard-header-meta">
@@ -73,14 +72,12 @@ const Dashboard = () => {
         </div>
 
         <div className="tab-content-area">
-          <div
-            style={{ display: activeTab === "employees" ? "block" : "none" }}
-          >
+          {activeTab === "employees" && (
             <EmployeeList employees={employees} isLoading={loading} />
-          </div>
-          <div style={{ display: activeTab === "branches" ? "block" : "none" }}>
+          )}
+          {activeTab === "branches" && (
             <BranchList branches={branches} isLoading={loading} />
-          </div>
+          )}
         </div>
       </div>
     </div>

@@ -15,8 +15,8 @@ const NewEmployeeSettingsForm = ({
   const getFormTitle = () => {
     if (activeTab === "general") return "Editar Plantilla General (Lunes)";
     if (activeTab === "friday-with")
-      return "Editar Reporte para RH (Con Ingresos)";
-    return "Editar Reporte para RH (Sin Ingresos)";
+      return "Editar Reporte para TH (Con Ingresos)";
+    return "Editar Reporte para TH (Sin Ingresos)";
   };
 
   const getClosingLabel = () => {

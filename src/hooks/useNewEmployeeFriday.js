@@ -59,8 +59,8 @@ export const useNewEmployeeFriday = () => {
 
   const runManualSend = async () => {
     const result = await Swal.fire({
-      title: "¿Ejecutar reporte de RH manual?",
-      text: "Se consolidarán los nuevos ingresos y se enviará el correo a RH ahora.",
+      title: "¿Ejecutar reporte de TH manual?",
+      text: "Se consolidarán los nuevos ingresos y se enviará el correo a TH ahora.",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#1e3a8a",
@@ -74,7 +74,7 @@ export const useNewEmployeeFriday = () => {
         Swal.fire({
           icon: response.data.status === "success" ? "success" : "info",
           title: "Resultado",
-          text: response.data.message,
+          text: "El reporte de viernes para TH se ejecutó correctamente.",
           confirmButtonColor: "#1e3a8a",
         });
       } catch (error) {

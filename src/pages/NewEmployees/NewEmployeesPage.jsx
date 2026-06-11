@@ -58,7 +58,7 @@ const NewEmployeesPage = () => {
     } else {
       Swal.fire({
         title: "Error de Sincronización",
-        text: result.message,
+        text: "No se pudo conectar a la base de datos de AX para consultar los nuevos ingresos. Por favor, verifica tu conexión a la red corporativa (o VPN) y reinténtalo.",
         icon: "error",
         confirmButtonColor: "#ef4444",
         confirmButtonText: "Cerrar",

@@ -114,12 +114,6 @@ const NewEmployeeMailPreview = ({ activeTab, config }) => {
                       "Texto de cierre y despedida masiva..."}
                   </p>
                 </div>
-
-                <div className="mail-preview-phrase-box">
-                  <p className="mail-preview-phrase-text">
-                    "Frase célebre de ejemplo"
-                  </p>
-                </div>
               </div>
             </>
           )}
@@ -140,7 +134,7 @@ const NewEmployeeMailPreview = ({ activeTab, config }) => {
                 <div className="mail-preview-summary-box">
                   <div className="mail-preview-summary-text">
                     {config.intro_text ||
-                      "Estimado equipo de RH, a continuación se detallan los ingresos..."}
+                      "Estimado equipo de TH, a continuación se detallan los ingresos..."}
                   </div>
                 </div>
 
@@ -164,7 +158,7 @@ const NewEmployeeMailPreview = ({ activeTab, config }) => {
                   <div className="mail-preview-alert-text">
                     <strong>Nota de control:</strong>{" "}
                     {config.closing_text ||
-                      "Texto aclaratorio de control para RH..."}
+                      "Texto aclaratorio de control para TH..."}
                   </div>
                 </div>
               </div>
@@ -200,7 +194,7 @@ const NewEmployeeMailPreview = ({ activeTab, config }) => {
                   <div className="mail-preview-alert-text">
                     <strong>Nota de control:</strong>{" "}
                     {config.closing_text ||
-                      "Texto aclaratorio de control para RH..."}
+                      "Texto aclaratorio de control para TH..."}
                   </div>
                 </div>
               </div>
@@ -223,7 +217,7 @@ const NewEmployeeMailPreview = ({ activeTab, config }) => {
                 </span>
                 <br />
                 Este es un reporte automático generado para el departamento de
-                Recursos Humanos.
+                Talento Humano.
               </>
             )}
           </div>
